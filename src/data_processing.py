@@ -1,13 +1,5 @@
 import pandas as pd
 
-readings = pd.read_csv(
-    "D:/learning to ML/energy_analysis/tests/data/readings.csv"
-)
-
-rooms = pd.read_csv(
-    "D:/learning to ML/energy_analysis/tests/data/rooms.csv"
-)
-
 class CleanData():
     def __init__(self, readings, rooms):
         self.readings = readings
@@ -70,20 +62,11 @@ class CleanData():
                 f"Обнаружены неизвестный(ые) ID в readings: {unknown.tolist()}"
             )
     
-    def save_report(self):
-        with open("report.txt", "w", encoding="utf-8") as file:
+    def save_report(self, path):
+        with open(path, "w", encoding="utf-8") as file:
             file.write("Поступило строк: " + str(self.report["entrance"]) + "\n")
             file.write("Удалено дубликатов: " + str(self.report["delete_duplicates"]) + "\n")
             file.write("Удалено строк где нету показаний: " + str(self.report["delete_nans"]) + "\n")
             file.write("Удалено строк где показания отрицательные: " + str(self.report["negative_values"]) + "\n")
             file.write("Осталось строк: " + str(self.report["remained"]))
         
-
-try:
-    data = CleanData(readings, rooms)
-    data.clean_readings()
-    data.save_report()
-    print(data.report)
-except ValueError as error:
-    print(error)
-

@@ -1,0 +1,5 @@
+room_id,room_name,area_m2,daily_limit_kwh
+1,Office,60,35
+2,Workshop,90,55
+3,Storage,100,20
+4,Server_room,25,80
